@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MyToday</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
+    <string name="placeholder">hello world</string>
+    <string name="placeholder_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="home">HOME</string>
+    <string name="today">TODAY</string>
+    <string name="dayDatePlaceholder">Day Date</string>
+    <string name="datePlaceholder">YYYY-MM-DD</string>
+    <string name="no_tasks_set">No Tasks Set For Today</string>
+    <string name="no_goal_set">No Goal Set</string>
+    <string name="future_days">Upcoming</string>
+    <string name="placeholder_tasks">00 / 00 Tasks</string>
+    <string name="title_task_popup">Edit Task</string>
+    <string name="placeholder_title">Title</string>
+    <string name="placeholder_description">Description</string>
+    <string name="confirm">confirm</string>
+    <string name="placeholder_status">Status</string>
+    <string name="snack_bar_undo_message">Task deleted</string>
+    <string name="snack_bar_new_today">New Today Started</string>
+    <string name="snack_bar_undo">Undo</string>
+    <string name="title_goal_popup">Edit Your Goal</string>
+    <string name="placeholder_goal">Today\'s Goal</string>
+
+</resources>

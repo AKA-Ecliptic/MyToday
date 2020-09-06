@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TodoAccordion">
+        <attr name="status" format="enum">
+            <enum name="incomplete" value="0" />
+            <enum name="inProgress" value="1" />
+            <enum name="complete" value="2" />
+        </attr>
+        <attr name="title" format="string" />
+        <attr name="expanded" format="boolean" />
+        <attr name="description" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="DayPast">
+        <attr name="formattedDate" format="string" />
+        <attr name="totalTasks" format="integer" />
+        <attr name="completeTasks" format="integer" />
+    </declare-styleable>
+</resources>
