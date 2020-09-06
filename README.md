@@ -1,5 +1,5 @@
 # MyToday
-### Needed a simple todo list to help me manage basic tasks, so I decided make my own.
+### Needed a simple todo list to help me manage basic tasks, so I decided to make my own.
 ---
 The main goals for this project were to:
 * Get an introductory to andorid studio's architecture components 
@@ -8,7 +8,7 @@ The main goals for this project were to:
 * Have a small and easily manageable scope
 * Use development methods learned at university
 
-But really I just wanted to code something, will continue to expand.
+But really I just wanted to code something, and will continue to build upon this project.
 
 ---
 
