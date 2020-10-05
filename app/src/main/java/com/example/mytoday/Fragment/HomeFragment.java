@@ -1,9 +1,11 @@
 package com.example.mytoday.Fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,12 +18,12 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mytoday.Adapter.HomeListAdapter;
 import com.example.mytoday.Architecture.TodayViewModel;
 import com.example.mytoday.Entity.Today;
 import com.example.mytoday.Entity.TodayTasks;
-import com.example.mytoday.Adapter.HomeListAdapter;
-import com.example.mytoday.R;
 import com.example.mytoday.Enum.TaskStatus;
+import com.example.mytoday.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -67,8 +69,6 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
         setUpViewModelLink();
-        setUpConditionals();
-        setUpAdapter();
     }
 
     private void initViews(View view) {
@@ -86,6 +86,11 @@ public class HomeFragment extends Fragment {
 
     private void setUpViewModelLink() {
         todayViewModel = new ViewModelProvider(requireActivity()).get(TodayViewModel.class);
+        todayViewModel.getToday(dateToString(new Date())).observe(getViewLifecycleOwner(), today -> {
+            currentTodayTask = today;
+            setUpConditionals();
+            setUpAdapter();
+        });
     }
 
     private void setUpConditionals() {
@@ -117,6 +122,27 @@ public class HomeFragment extends Fragment {
 
             adapter.setTodayTasks(todays);
             adapter.setOnItemClick((view, pos) -> openTaskFragment(adapter.getItem(pos)));
+            adapter.setOnItemLongClick((view, pos) -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+
+                View v = requireActivity().getLayoutInflater().inflate(R.layout.popup_delete, null);
+                AlertDialog deleteDialog = builder.setView(v).create();
+
+                deleteDialog.show();
+
+                Button confirm = v.findViewById(R.id.delete_popup_confirm);
+                Button cancel = v.findViewById(R.id.delete_popup_cancel);
+
+                confirm.setOnClickListener(vw -> {
+                    todayViewModel.deleteToday(adapter.getItem(pos));
+
+                    deleteDialog.dismiss();
+                });
+
+                cancel.setOnClickListener( vw -> {
+                    deleteDialog.cancel();
+                });
+            });
         });
     }
 

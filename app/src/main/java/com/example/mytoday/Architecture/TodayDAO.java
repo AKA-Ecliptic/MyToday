@@ -12,6 +12,7 @@ import com.example.mytoday.Entity.Task;
 import com.example.mytoday.Entity.Today;
 import com.example.mytoday.Entity.TodayTasks;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -25,6 +26,10 @@ public interface TodayDAO {
 
     @Insert
     void insertTodayWithTasks(Today today, List<Task> tasks);
+
+    @Transaction
+    @Query("SELECT * FROM todays WHERE _date = :date")
+    LiveData<TodayTasks> getToday(Date date);
 
     @Query("SELECT * FROM todays")
     LiveData<List<Today>> getAllTodays();

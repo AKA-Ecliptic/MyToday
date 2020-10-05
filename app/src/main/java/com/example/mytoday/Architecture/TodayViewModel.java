@@ -1,6 +1,7 @@
 package com.example.mytoday.Architecture;
 
 import android.app.Application;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,6 +11,7 @@ import com.example.mytoday.Entity.Task;
 import com.example.mytoday.Entity.Today;
 import com.example.mytoday.Entity.TodayTasks;
 
+import java.util.Date;
 import java.util.List;
 
 public class TodayViewModel extends AndroidViewModel {
@@ -22,6 +24,10 @@ public class TodayViewModel extends AndroidViewModel {
         todayRepository = new TodayRepository(application);
         todayTasks = todayRepository.getAllTodaysWithTasks();
     }
+
+    public LiveData<TodayTasks> getToday(Date date){ return todayRepository.getToday(date); }
+
+    public LiveData<TodayTasks> getToday(String date){ return todayRepository.getToday(date); }
 
     public LiveData<List<TodayTasks>> getAllTodaysWithTasks() { return  todayTasks; }
 
@@ -44,4 +50,7 @@ public class TodayViewModel extends AndroidViewModel {
         todayRepository.deleteTasks(tasks);
     }
 
+    public void deleteToday(TodayTasks today) {
+        todayRepository.deleteToday(today);
+    }
 }

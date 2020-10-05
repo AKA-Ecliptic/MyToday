@@ -24,5 +24,7 @@
     <string name="snack_bar_undo">Undo</string>
     <string name="title_goal_popup">Edit Your Goal</string>
     <string name="placeholder_goal">Today\'s Goal</string>
+    <string name="cancel">cancel</string>
+    <string name="title_delete_popup">Delete this Today?</string>
 
 </resources>

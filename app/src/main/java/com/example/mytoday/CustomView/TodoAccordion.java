@@ -244,7 +244,7 @@ public class TodoAccordion extends View {
 
     private Rect calculateCheckBoxRect(int xOffset, int yOffset) {
         int left = xOffset + getPaddingLeft();
-        int top = padding + getPaddingTop() + yOffset;
+        int top = 10 + getPaddingTop() + yOffset;
         int bottom = initHeight - top;
         int right = left + bottom - top;
 

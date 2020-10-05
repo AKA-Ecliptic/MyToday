@@ -19,20 +19,28 @@ import java.util.List;
 public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.TodayViewHolder> {
 
     private static RecyclerViewItemClickListener onItemClick;
+    private static RecyclerViewItemClickListener onItemLongClick;
     private boolean hasDivider = false;
 
-    static class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private final DayPast dayPast;
 
         private TodayViewHolder(View itemView) {
             super(itemView);
             dayPast = itemView.findViewById(R.id.day_past);
             dayPast.setOnClickListener(this);
+            dayPast.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             onItemClick.onRecyclerViewItemClicked(view, getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            onItemLongClick.onRecyclerViewItemClicked(view, getAdapterPosition());
+            return true;
         }
     }
 
@@ -88,6 +96,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.TodayV
 
     public TodayTasks getItem(int position) {
         return todayTasks.get(position);
+    }
+
+    public void setOnItemLongClick(RecyclerViewItemClickListener recyclerViewItemLongClickListener) {
+        onItemLongClick = recyclerViewItemLongClickListener;
     }
 
     public void setOnItemClick(RecyclerViewItemClickListener recyclerViewItemClickListener) {

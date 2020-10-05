@@ -8,7 +8,10 @@ import com.example.mytoday.Entity.Task;
 import com.example.mytoday.Entity.Today;
 import com.example.mytoday.Entity.TodayTasks;
 
+import java.util.Date;
 import java.util.List;
+
+import static com.example.mytoday.Architecture.TodayConverters.fromString;
 
 class TodayRepository {
 
@@ -19,6 +22,14 @@ class TodayRepository {
         TodayRoomDatabase db = TodayRoomDatabase.getDatabase(application);
         todayDAO = db.todayDAO();
         todayTasks = todayDAO.getAllTodaysWithTasks();
+    }
+
+    LiveData<TodayTasks> getToday(Date date) {
+        return todayDAO.getToday(date);
+    }
+
+    LiveData<TodayTasks> getToday(String date) {
+        return todayDAO.getToday(fromString(date));
     }
 
     LiveData<List<TodayTasks>> getAllTodaysWithTasks() {
@@ -60,6 +71,13 @@ class TodayRepository {
     void deleteTasks(Task... tasks) {
         TodayRoomDatabase.databaseWriteExecutor.execute(() -> {
             todayDAO.deleteTasks(tasks);
+            refreshTodaysWithTasks();
+        });
+    }
+
+    void deleteToday(TodayTasks today) {
+        TodayRoomDatabase.databaseWriteExecutor.execute(() -> {
+            todayDAO.deleteToday(today.getToday(), today.getTasks());
             refreshTodaysWithTasks();
         });
     }
